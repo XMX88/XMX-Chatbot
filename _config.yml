@@ -1,4 +1,32 @@
+# GitHub Pages Configuration
+title: XMX Chatbot
+description: Professional AI-powered Chatbot Application
+url: https://XMX88.github.io/XMX-Chatbot
+
+# Jekyll Settings
 theme: null
 markdown: kramdown
 plugins: []
-exclude: ['.git', '.gitignore', 'node_modules', 'package.json', 'src']
+
+# Exclude unnecessary files from GitHub Pages
+exclude: 
+  - '.git'
+  - '.gitignore'
+  - 'node_modules'
+  - 'package.json'
+  - 'package-lock.json'
+  - 'src'
+  - '.env'
+  - '.env.example'
+  - 'DEPLOYMENT.md'
+  - 'TROUBLESHOOTING_API_KEY.md'
+  - 'ADVANCED_FEATURES.js'
+  - 'COMPLETION_REPORT.txt'
+
+# Keep public folder accessible
+keep_files:
+  - 'public'
+  - 'index.html'
+  - 'signup.html'
+  - 'dashboard.html'
+  - 'styles.css'

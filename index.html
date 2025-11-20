@@ -1,421 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ore - Sign In</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .signin-container {
-            width: 100%;
-            max-width: 450px;
-            padding: 20px;
-        }
-
-        .signin-card {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 50px 40px;
-            text-align: center;
-        }
-
-        .logo {
-            font-size: 3.5rem;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-
-        .signin-card h1 {
-            font-size: 2.5rem;
-            color: #111;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .signin-card p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            color: #333;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .signin-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .signin-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-        }
-
-        .signin-btn:active {
-            transform: translateY(0);
-        }
-
-        .demo-link {
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .demo-link p {
-            color: #999;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-        }
-
-        .demo-btn {
-            padding: 12px 20px;
-            background: #f5f5f5;
-            color: #667eea;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .demo-btn:hover {
-            background: #667eea;
-            color: white;
-        }
-
-        .error-message {
-            color: #e74c3c;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            display: none;
-        }
-
-        .success-message {
-            color: #27ae60;
-            font-size: 0.9rem;
-            margin-top: 8px;
-            display: none;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>XMX Chatbot</title>
+	<style>
+		body { font-family: Arial, sans-serif; background: #181818; margin: 0; }
+		.container {
+			width: 370px;
+			margin: 7rem auto;
+			background: #111;
+			border-radius: 50px;
+			box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 8px #000;
+			padding: 2.5rem 2.2rem 2.2rem 2.2rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			animation: bounceIn 1.2s cubic-bezier(.68,-0.55,.27,1.55) both;
+		}
+		@keyframes bounceIn {
+			0% { transform: scale(0.7); box-shadow: 0 0 0 0 #000; }
+			60% { transform: scale(1.1); box-shadow: 0 0 0 16px #000; }
+			80% { transform: scale(0.95); }
+			100% { transform: scale(1); box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 8px #000; }
+		}
+		.socialpanel-title {
+			font-family: 'Segoe UI Black', Arial, sans-serif;
+			font-size: 2.3rem;
+			color: #ff2222;
+			text-align: center;
+			letter-spacing: 2px;
+			margin-bottom: 0.2rem;
+			font-weight: bold;
+			text-shadow: 0 2px 12px #000, 0 0 2px #ff2222;
+		}
+		.subtitle {
+			color: #fff;
+			text-align: center;
+			margin-bottom: 2.2rem;
+			font-size: 1.1rem;
+			letter-spacing: 1px;
+		}
+		.form-group { position: relative; margin-bottom: 2rem; }
+		.form-group input {
+			width: 320px;
+			padding: 1.2rem 0.7rem 0.5rem 0.7rem;
+			border-radius: 18px;
+			border: 3.5px solid #222;
+			background: #222;
+			color: #fff;
+			font-size: 1.08rem;
+			outline: none;
+			transition: box-shadow 0.2s, border-color 0.2s;
+			font-weight: 500;
+		}
+		.form-group input::placeholder {
+			color: #888;
+			opacity: 1;
+			font-weight: 600;
+			letter-spacing: 1px;
+		}
+		.form-group input:focus {
+			border-color: #ff2222;
+			box-shadow: 0 0 0 3px #ff222244;
+		}
+		.form-group label {
+			position: absolute;
+			top: 1.2rem;
+			left: 0.8rem;
+			color: #bbb;
+			font-size: 1rem;
+			pointer-events: none;
+			transition: 0.2s ease all;
+			background: #222;
+			padding: 0 0.2rem;
+			border-radius: 8px;
+		}
+		.form-group input:focus + label,
+		.form-group input:not(:placeholder-shown) + label {
+			top: -0.7rem;
+			left: 0.6rem;
+			font-size: 0.85rem;
+			color: #ff2222;
+			background: #111;
+		}
+		.login-btn, .signup-btn {
+			background: #fff;
+			color: #111;
+			border: none;
+			padding: 0.8rem 2rem;
+			border-radius: 30px;
+			cursor: pointer;
+			font-size: 1.1rem;
+			width: 300px;
+			font-weight: bold;
+			margin-bottom: 0.7rem;
+			box-shadow: 0 2px 8px rgba(255,255,255,0.08);
+			transition: background 0.2s, color 0.2s, transform 0.15s;
+		}
+		.login-btn:hover, .signup-btn:hover {
+			background: #ff2222;
+			color: #fff;
+			transform: scale(1.04);
+		}
+		.status {
+			text-align: center;
+			color: #ff2222;
+			margin-top: 1rem;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+		.signup-link {
+			display: flex;
+			justify-content: center;
+			gap: 1.2rem;
+			margin-top: 1.2rem;
+		}
+		.signup-link a {
+			text-decoration: none;
+		}
+		@media (max-width: 500px) {
+			.container { width: 78vw; padding: 1rem; border-radius: 20px; }
+			.form-group input { width: 70vw; }
+			.login-btn, .signup-btn { width: 70vw; }
+		}
+	</style>
 </head>
 <body>
-    <div class="signin-container">
-        <div class="signin-card">
-            <div class="logo">
-                <i class="fas fa-robot"></i>
-            </div>
-            <h1>Welcome to ore</h1>
-            <p>Sign in to your AI assistant</p>
-
-            <form id="signinForm">
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email" 
-                        placeholder="you@example.com" 
-                        required
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        placeholder="••••••••" 
-                        required
-                    >
-                </div>
-
-                <div class="error-message" id="errorMessage"></div>
-                <div class="success-message" id="successMessage"></div>
-
-                <button type="submit" class="signin-btn">
-                    <i class="fas fa-sign-in-alt"></i> Sign In
-                </button>
-            </form>
-
-            <div class="demo-link">
-                <p>Or try the demo version:</p>
-                <button class="demo-btn" type="button" onclick="goToDemo()">
-                    <i class="fas fa-play"></i> Enter Demo
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const form = document.getElementById('signinForm');
-        const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            if (!email || !password) {
-                showError('Please fill in all fields');
-                return;
-            }
-
-            if (password.length < 6) {
-                showError('Password must be at least 6 characters');
-                return;
-            }
-
-            try {
-                localStorage.setItem('user', JSON.stringify({
-                    email: email,
-                    loginTime: new Date().toISOString()
-                }));
-
-                showSuccess('Signing in...');
-                setTimeout(() => {
-                    window.location.href = 'public/dashboard.html';
-                }, 1000);
-            } catch (error) {
-                showError('Sign in failed. Please try again.');
-            }
-        });
-
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.style.display = 'block';
-            successMessage.style.display = 'none';
-        }
-
-        function showSuccess(message) {
-            successMessage.textContent = message;
-            successMessage.style.display = 'block';
-            errorMessage.style.display = 'none';
-        }
-
-        function goToDemo() {
-            localStorage.setItem('user', JSON.stringify({
-                email: 'demo@ore.ai',
-                loginTime: new Date().toISOString()
-            }));
-            window.location.href = 'public/dashboard.html';
-        }
-
-        window.addEventListener('load', () => {
-            const user = localStorage.getItem('user');
-            if (user) {
-                window.location.href = 'public/dashboard.html';
-            } else {
-                // Redirect to signin page
-                window.location.href = 'public/index.html';
-            }
-        });
-    </script>
-</body>
-</html>
-            <div class="header-content">
-                <div class="header-title">
-                    <div class="logo">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <div class="title-group">
-                        <h1>ore</h1>
-                        <span class="status-badge">
-                            <span class="status-dot"></span>
-                            Online
-                        </span>
-                    </div>
-                </div>
-                <div class="header-actions">
-                    <button class="header-btn" id="refreshBtn" title="New Chat">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="header-btn" id="settingsBtn" title="Settings">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Chat Messages Area -->
-        <div class="chatbot-messages">
-            <div id="chatMessages" class="messages-container">
-                <div class="welcome-section">
-                    <div class="welcome-icon">
-                        <i class="fas fa-sparkles"></i>
-                    </div>
-                    <h2>Welcome to ore</h2>
-                    <p>Your AI assistant powered by Google Gemini</p>
-                    
-                    <div class="feature-grid">
-                        <div class="feature-item">
-                            <i class="fas fa-zap"></i>
-                            <span>Fast & Smart</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-lock"></i>
-                            <span>Secure</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-infinity"></i>
-                            <span>Always On</span>
-                        </div>
-                        <div class="feature-item">
-                            <i class="fas fa-brain"></i>
-                            <span>Intelligent</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="loadingIndicator" class="loading-indicator">
-                <div class="spinner"></div>
-            </div>
-        </div>
-
-        <!-- Quick Replies Section -->
-        <div class="quick-replies-section" id="quickReplies">
-            <div class="quick-reply-label">Quick Start Prompts</div>
-            <div class="quick-replies-container">
-                <button class="quick-reply-btn" data-prompt="What can you help me with?">
-                    <i class="fas fa-question-circle"></i>
-                    <span>Help & Guide</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Explain quantum computing in simple terms">
-                    <i class="fas fa-atom"></i>
-                    <span>Explain Concept</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Write a professional email for me">
-                    <i class="fas fa-envelope"></i>
-                    <span>Write Content</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Help me debug this code problem">
-                    <i class="fas fa-code"></i>
-                    <span>Code Help</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="What are the latest tech trends?">
-                    <i class="fas fa-trending-up"></i>
-                    <span>Tech Trends</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Create a meal plan for the week">
-                    <i class="fas fa-utensils"></i>
-                    <span>Plan & Organize</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Input Section -->
-        <div class="chatbot-input-section">
-            <div class="input-wrapper">
-                <textarea 
-                    id="messageInput" 
-                    class="message-input" 
-                    placeholder="Ask me anything..." 
-                    rows="1"
-                ></textarea>
-                <button id="attachBtn" class="input-btn" title="Attach file">
-                    <i class="fas fa-paperclip"></i>
-                </button>
-            </div>
-            <button id="sendBtn" class="send-btn">
-                <i class="fas fa-paper-plane"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Settings Modal -->
-    <div id="settingsModal" class="settings-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Settings</h2>
-                <button id="closeSettings" class="close-btn">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <div class="settings-body">
-                <div class="setting-group">
-                    <label>Theme</label>
-                    <select id="themeSelect">
-                        <option value="light">Light</option>
-                        <option value="dark" selected>Dark</option>
-                        <option value="auto">Auto</option>
-                    </select>
-                </div>
-
-                <div class="setting-group">
-                    <label>Font Size</label>
-                    <input type="range" id="fontSizeSlider" min="12" max="18" value="14">
-                    <span id="fontSizeValue">14px</span>
-                </div>
-
-                <div class="setting-group">
-                    <label>Sound</label>
-                    <input type="checkbox" id="soundToggle" checked>
-                    <span>Enable notifications</span>
-                </div>
-
-                <button id="clearHistoryBtn" class="clear-history-btn">
-                    <i class="fas fa-trash"></i> Clear Chat History
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="toast"></div>
-
-    <script src="public/script.js"></script>
+	<div class="container">
+		<div class="socialpanel-title">XMX CHATBOT</div>
+		<div class="subtitle">SIGN IN TO GET STARTED</div>
+		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
+			<form id="loginForm" style="width:100%; display: flex; flex-direction: column; align-items: center;">
+				<div class="form-group">
+					<input type="email" id="loginEmail" name="email" placeholder=" " required>
+					<label for="loginEmail">Email</label>
+				</div>
+				<div class="form-group">
+					<input type="password" id="loginPassword" name="password" placeholder=" " required>
+					<label for="loginPassword">Password</label>
+				</div>
+				<button type="submit" class="login-btn">Sign In</button>
+			</form>
+			<div class="signup-link" style="width:100%; justify-content: center;">
+				<a href="signup.html"><button class="signup-btn">Sign Up</button></a>
+			</div>
+		</div>
+		<div id="loginStatus" class="status"></div>
+	</div>
+	<script>
+		// Simulate account storage using localStorage
+		document.getElementById('loginForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			document.getElementById('loginStatus').textContent = 'Processing...';
+			var email = document.getElementById('loginEmail').value;
+			var password = document.getElementById('loginPassword').value;
+			var accounts = JSON.parse(localStorage.getItem('accounts') || '{}');
+			setTimeout(function() {
+				if(accounts[email] && accounts[email] === password) {
+					document.getElementById('loginStatus').textContent = 'Login successful! Redirecting...';
+					localStorage.setItem('user', JSON.stringify({email: email}));
+					setTimeout(function(){ window.location.href = 'dashboard.html'; }, 1200);
+				} else {
+					document.getElementById('loginStatus').textContent = 'Account not found or password incorrect.';
+				}
+			}, 1200);
+		});
+	</script>
 </body>
 </html>

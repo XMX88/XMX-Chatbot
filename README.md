@@ -255,7 +255,41 @@ git push heroku main
 - [Express.js Documentation](https://expressjs.com/)
 - [MDN Web Docs](https://developer.mozilla.org/)
 
-## 📝 License
+## 🌐 GitHub Pages Deployment
+
+This project is configured for GitHub Pages hosting:
+
+### Static Frontend
+- Root `index.html` - Login page
+- `signup.html` - User registration
+- `dashboard.html` - Chatbot interface
+- `public/styles.css` - Styling
+- `public/script.js` - Frontend logic
+
+### Live Demo
+Visit: **[https://XMX88.github.io/XMX-Chatbot](https://XMX88.github.io/XMX-Chatbot)**
+
+### Deploy Your Fork
+
+1. **Fork the repository**
+   - Click "Fork" on GitHub
+
+2. **Enable GitHub Pages**
+   - Go to Settings → Pages
+   - Set Source: "Deploy from a branch"
+   - Branch: "main"
+   - Folder: "root /"
+
+3. **Access Your Site**
+   - URL: `https://yourusername.github.io/XMX-Chatbot`
+
+### Backend Requirements
+For full AI chat functionality:
+- Run the backend server locally: `npm start`
+- Or deploy to Heroku/Railway/other Node.js hosting
+- Update the API endpoint in `public/script.js`
+
+## 📜 License
 
 This project is licensed under the MIT License. See LICENSE file for details.
 
