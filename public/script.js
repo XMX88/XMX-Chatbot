@@ -456,5 +456,23 @@ class XMXChatbot {
 
 // Initialize chatbot when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if user is logged in
+    const user = localStorage.getItem('user');
+    if (!user) {
+        window.location.href = '../index.html';
+        return;
+    }
+
+    // Add logout button handler
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('user');
+                window.location.href = '../index.html';
+            }
+        });
+    }
+
     new XMXChatbot();
 });
