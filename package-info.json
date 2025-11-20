@@ -1,0 +1,12 @@
+{
+    "name": "XMX Chatbot",
+    "description": "Professional AI-powered Chatbot Assistant",
+    "version": "1.0.0",
+    "keywords": ["chatbot", "ai", "generative", "xmx", "assistant"],
+    "author": "XMX Team",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/xmx-chatbot"
+    }
+}
