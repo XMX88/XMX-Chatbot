@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ore - AI Chatbot</title>
+    <link rel="stylesheet" href="public/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chatbot-container">
+        <!-- Header -->
+        <div class="chatbot-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <div class="logo">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="title-group">
+                        <h1>ore</h1>
+                        <span class="status-badge">
+                            <span class="status-dot"></span>
+                            Online
+                        </span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" id="refreshBtn" title="New Chat">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="header-btn" id="settingsBtn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div class="chatbot-messages">
+            <div id="chatMessages" class="messages-container">
+                <div class="welcome-section">
+                    <div class="welcome-icon">
+                        <i class="fas fa-sparkles"></i>
+                    </div>
+                    <h2>Welcome to ore</h2>
+                    <p>Your AI assistant powered by Google Gemini</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <i class="fas fa-zap"></i>
+                            <span>Fast & Smart</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-lock"></i>
+                            <span>Secure</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-infinity"></i>
+                            <span>Always On</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-brain"></i>
+                            <span>Intelligent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="loadingIndicator" class="loading-indicator">
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+        <!-- Quick Replies Section -->
+        <div class="quick-replies-section" id="quickReplies">
+            <div class="quick-reply-label">Quick Start Prompts</div>
+            <div class="quick-replies-container">
+                <button class="quick-reply-btn" data-prompt="What can you help me with?">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Help & Guide</span>
+                </button>
+                <button class="quick-reply-btn" data-prompt="Explain quantum computing in simple terms">
+                    <i class="fas fa-atom"></i>
+                    <span>Explain Concept</span>
+                </button>
+                <button class="quick-reply-btn" data-prompt="Write a professional email for me">
+                    <i class="fas fa-envelope"></i>
+                    <span>Write Content</span>
+                </button>
+                <button class="quick-reply-btn" data-prompt="Help me debug this code problem">
+                    <i class="fas fa-code"></i>
+                    <span>Code Help</span>
+                </button>
+                <button class="quick-reply-btn" data-prompt="What are the latest tech trends?">
+                    <i class="fas fa-trending-up"></i>
+                    <span>Tech Trends</span>
+                </button>
+                <button class="quick-reply-btn" data-prompt="Create a meal plan for the week">
+                    <i class="fas fa-utensils"></i>
+                    <span>Plan & Organize</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="chatbot-input-section">
+            <div class="input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    class="message-input" 
+                    placeholder="Ask me anything..." 
+                    rows="1"
+                ></textarea>
+                <button id="attachBtn" class="input-btn" title="Attach file">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+            </div>
+            <button id="sendBtn" class="send-btn">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button id="closeSettings" class="close-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="settings-body">
+                <div class="setting-group">
+                    <label>Theme</label>
+                    <select id="themeSelect">
+                        <option value="light">Light</option>
+                        <option value="dark" selected>Dark</option>
+                        <option value="auto">Auto</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label>Font Size</label>
+                    <input type="range" id="fontSizeSlider" min="12" max="18" value="14">
+                    <span id="fontSizeValue">14px</span>
+                </div>
+
+                <div class="setting-group">
+                    <label>Sound</label>
+                    <input type="checkbox" id="soundToggle" checked>
+                    <span>Enable notifications</span>
+                </div>
+
+                <button id="clearHistoryBtn" class="clear-history-btn">
+                    <i class="fas fa-trash"></i> Clear Chat History
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="public/script.js"></script>
+</body>
+</html>
