@@ -15,9 +15,9 @@ class XMXChatbot {
         this.settingsBtn = document.getElementById('settingsBtn');
         this.settingsModal = document.getElementById('settingsModal');
         this.closeSettingsBtn = document.getElementById('closeSettings');
-        this.quickRepliesSection = document.getElementById('quickReplies');
+        this.quickRepliesSection = document.getElementById('quickReplies') || {}; // Fallback for removed element
         this.quickReplyBtns = document.querySelectorAll('.quick-reply-btn');
-        this.loadingIndicator = document.getElementById('loadingIndicator');
+        // this.loadingIndicator = document.getElementById('loadingIndicator');
         this.toast = document.getElementById('toast');
         this.attachBtn = document.getElementById('attachBtn');
         this.clearHistoryBtn = document.getElementById('clearHistoryBtn');
@@ -127,9 +127,9 @@ class XMXChatbot {
 
     showWelcomeAndQuickReplies() {
         if (this.chatHistory.length === 0) {
-            this.quickRepliesSection.classList.add('visible');
+            // this.quickRepliesSection.classList.add('visible');
         } else {
-            this.quickRepliesSection.classList.remove('visible');
+            // this.quickRepliesSection.classList.remove('visible');
         }
     }
 
@@ -139,7 +139,7 @@ class XMXChatbot {
 
         this.messageInput.value = '';
         this.autoResizeInput();
-        this.quickRepliesSection.classList.remove('visible');
+        // this.quickRepliesSection.classList.remove('visible');
         
         // Add user message to UI
         this.addMessageToUI(message, 'user');
@@ -155,7 +155,7 @@ class XMXChatbot {
         // Show typing indicator
         this.showTypingIndicator();
         this.sendBtn.disabled = true;
-        this.loadingIndicator.classList.add('visible');
+        // this.loadingIndicator.classList.add('visible');
 
         try {
             // Check if user is asking about the bot's name
@@ -178,7 +178,7 @@ class XMXChatbot {
                 this.saveChatHistory();
                 this.scrollToBottom();
                 this.sendBtn.disabled = false;
-                this.loadingIndicator.classList.remove('visible');
+                // this.loadingIndicator.classList.remove('visible');
                 this.messageInput.focus();
                 return;
             }
@@ -296,7 +296,7 @@ class XMXChatbot {
             );
         } finally {
             this.sendBtn.disabled = false;
-            this.loadingIndicator.classList.remove('visible');
+            // this.loadingIndicator.classList.remove('visible');
             this.messageInput.focus();
         }
     }

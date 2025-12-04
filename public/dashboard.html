@@ -69,37 +69,6 @@
             </div>
         </div>
 
-        <!-- Quick Replies Section -->
-        <div class="quick-replies-section" id="quickReplies">
-            <div class="quick-reply-label">Quick Start Prompts</div>
-            <div class="quick-replies-container">
-                <button class="quick-reply-btn" data-prompt="What can you help me with?">
-                    <i class="fas fa-question-circle"></i>
-                    <span>Help & Guide</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Explain quantum computing in simple terms">
-                    <i class="fas fa-atom"></i>
-                    <span>Explain Concept</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Write a professional email for me">
-                    <i class="fas fa-envelope"></i>
-                    <span>Write Content</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Help me debug this code problem">
-                    <i class="fas fa-code"></i>
-                    <span>Code Help</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="What are the latest tech trends?">
-                    <i class="fas fa-trending-up"></i>
-                    <span>Tech Trends</span>
-                </button>
-                <button class="quick-reply-btn" data-prompt="Create a meal plan for the week">
-                    <i class="fas fa-utensils"></i>
-                    <span>Plan & Organize</span>
-                </button>
-            </div>
-        </div>
-
         <!-- Input Section -->
         <div class="chatbot-input-section">
             <div class="input-wrapper">
@@ -113,6 +82,9 @@
                 <div class="input-actions">
                     <button class="action-btn" id="attachBtn" title="Attach File">
                         <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button class="action-btn" id="voiceBtn" title="Voice Note">
+                        <i class="fas fa-microphone"></i>
                     </button>
                     <button class="send-btn" id="sendBtn" title="Send Message">
                         <i class="fas fa-paper-plane"></i>
@@ -141,10 +113,6 @@
                         </select>
                     </div>
                     <div class="setting-group">
-                        <label>Font Size</label>
-                        <input type="range" id="fontSizeSlider" min="12" max="18" value="14">
-                    </div>
-                    <div class="setting-group">
                         <label>
                             <input type="checkbox" id="soundToggle" checked>
                             Enable Sound Notifications
@@ -154,14 +122,74 @@
                         <label>Clear Chat History</label>
                         <button class="danger-btn" id="clearHistoryBtn">Clear All Messages</button>
                     </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="liveToggle">
+                            Live Mode (use server API /api/chat)
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Loading Indicator -->
-        <div class="loading-indicator" id="loadingIndicator">
-            <div class="spinner"></div>
-            <span>Thinking...</span>
+        <!-- Attach / Actions Modal -->
+        <div class="modal" id="attachModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Attach / Actions</h2>
+                    <button class="close-btn" id="closeAttachModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="attach-grid">
+                        <button class="attach-btn" data-action="create-image"><i class="fas fa-image"></i><span>Add Image</span></button>
+                        <button class="attach-btn" data-action="thinking"><i class="fas fa-brain"></i><span>Thinking</span></button>
+                        <button class="attach-btn" data-action="deep-research"><i class="fas fa-search"></i><span>Deep Research</span></button>
+                        <button class="attach-btn" data-action="study-learn"><i class="fas fa-book-open"></i><span>Study & Learn</span></button>
+                        <button class="attach-btn" data-action="web-search"><i class="fas fa-globe"></i><span>Web Search</span></button>
+                    </div>
+                    <input type="file" accept="image/*" id="imageFileInput" style="display:none">
+                </div>
+            </div>
+        </div>
+
+        <!-- Voice Note Modal -->
+        <div class="modal" id="voiceModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Voice Note</h2>
+                    <button class="close-btn" id="closeVoiceModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="voice-recorder">
+                        <div class="voice-status" id="voiceStatus">Ready to record</div>
+                        <div class="voice-timer" id="voiceTimer">00:00</div>
+                        <div class="voice-controls">
+                            <button class="voice-btn" id="recordBtn">
+                                <i class="fas fa-circle"></i> Start Recording
+                            </button>
+                            <button class="voice-btn" id="stopBtn" style="display:none;">
+                                <i class="fas fa-stop"></i> Stop Recording
+                            </button>
+                        </div>
+                        <div class="voice-playback" id="voicePlayback" style="display:none;">
+                            <p>Recording saved</p>
+                            <audio id="audioPlayback" controls style="width:100%; margin: 10px 0;"></audio>
+                            <div class="voice-actions">
+                                <button class="modal-btn" id="sendVoiceBtn">
+                                    <i class="fas fa-paper-plane"></i> Send Voice Note
+                                </button>
+                                <button class="modal-btn secondary" id="rerecordBtn">
+                                    <i class="fas fa-redo"></i> Re-record
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Toast Notification -->
