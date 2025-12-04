@@ -1,171 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>XMX Chatbot</title>
-	<style>
-		body { font-family: Arial, sans-serif; background: #181818; margin: 0; }
-		.container {
-			width: 370px;
-			margin: 7rem auto;
-			background: #111;
-			border-radius: 50px;
-			box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 8px #000;
-			padding: 2.5rem 2.2rem 2.2rem 2.2rem;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			animation: bounceIn 1.2s cubic-bezier(.68,-0.55,.27,1.55) both;
-		}
-		@keyframes bounceIn {
-			0% { transform: scale(0.7); box-shadow: 0 0 0 0 #000; }
-			60% { transform: scale(1.1); box-shadow: 0 0 0 16px #000; }
-			80% { transform: scale(0.95); }
-			100% { transform: scale(1); box-shadow: 0 8px 32px rgba(0,0,0,0.35), 0 0 0 8px #000; }
-		}
-		.socialpanel-title {
-			font-family: 'Segoe UI Black', Arial, sans-serif;
-			font-size: 2.3rem;
-			color: #ff2222;
-			text-align: center;
-			letter-spacing: 2px;
-			margin-bottom: 0.2rem;
-			font-weight: bold;
-			text-shadow: 0 2px 12px #000, 0 0 2px #ff2222;
-		}
-		.subtitle {
-			color: #fff;
-			text-align: center;
-			margin-bottom: 2.2rem;
-			font-size: 1.1rem;
-			letter-spacing: 1px;
-		}
-		.form-group { position: relative; margin-bottom: 2rem; }
-		.form-group input {
-			width: 320px;
-			padding: 1.2rem 0.7rem 0.5rem 0.7rem;
-			border-radius: 18px;
-			border: 3.5px solid #222;
-			background: #222;
-			color: #fff;
-			font-size: 1.08rem;
-			outline: none;
-			transition: box-shadow 0.2s, border-color 0.2s;
-			font-weight: 500;
-		}
-		.form-group input::placeholder {
-			color: #888;
-			opacity: 1;
-			font-weight: 600;
-			letter-spacing: 1px;
-		}
-		.form-group input:focus {
-			border-color: #ff2222;
-			box-shadow: 0 0 0 3px #ff222244;
-		}
-		.form-group label {
-			position: absolute;
-			top: 1.2rem;
-			left: 0.8rem;
-			color: #bbb;
-			font-size: 1rem;
-			pointer-events: none;
-			transition: 0.2s ease all;
-			background: #222;
-			padding: 0 0.2rem;
-			border-radius: 8px;
-		}
-		.form-group input:focus + label,
-		.form-group input:not(:placeholder-shown) + label {
-			top: -0.7rem;
-			left: 0.6rem;
-			font-size: 0.85rem;
-			color: #ff2222;
-			background: #111;
-		}
-		.login-btn, .signup-btn {
-			background: #fff;
-			color: #111;
-			border: none;
-			padding: 0.8rem 2rem;
-			border-radius: 30px;
-			cursor: pointer;
-			font-size: 1.1rem;
-			width: 300px;
-			font-weight: bold;
-			margin-bottom: 0.7rem;
-			box-shadow: 0 2px 8px rgba(255,255,255,0.08);
-			transition: background 0.2s, color 0.2s, transform 0.15s;
-		}
-		.login-btn:hover, .signup-btn:hover {
-			background: #ff2222;
-			color: #fff;
-			transform: scale(1.04);
-		}
-		.status {
-			text-align: center;
-			color: #ff2222;
-			margin-top: 1rem;
-			font-weight: bold;
-			letter-spacing: 1px;
-		}
-		.signup-link {
-			display: flex;
-			justify-content: center;
-			gap: 1.2rem;
-			margin-top: 1.2rem;
-		}
-		.signup-link a {
-			text-decoration: none;
-		}
-		@media (max-width: 500px) {
-			.container { width: 78vw; padding: 1rem; border-radius: 20px; }
-			.form-group input { width: 70vw; }
-			.login-btn, .signup-btn { width: 70vw; }
-		}
-	</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="XMX Chatbot - Professional AI-powered Conversational Assistant">
+    <title>XMX Chatbot - AI Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<div class="container">
-		<div class="socialpanel-title">XMX CHATBOT</div>
-		<div class="subtitle">SIGN IN TO GET STARTED</div>
-		<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%;">
-			<form id="loginForm" style="width:100%; display: flex; flex-direction: column; align-items: center;">
-				<div class="form-group">
-					<input type="email" id="loginEmail" name="email" placeholder=" " required>
-					<label for="loginEmail">Email</label>
-				</div>
-				<div class="form-group">
-					<input type="password" id="loginPassword" name="password" placeholder=" " required>
-					<label for="loginPassword">Password</label>
-				</div>
-				<button type="submit" class="login-btn">Sign In</button>
-			</form>
-			<div class="signup-link" style="width:100%; justify-content: center;">
-				<a href="signup.html"><button class="signup-btn">Sign Up</button></a>
-			</div>
-		</div>
-		<div id="loginStatus" class="status"></div>
-	</div>
-	<script>
-		// Simulate account storage using localStorage
-		document.getElementById('loginForm').addEventListener('submit', function(e) {
-			e.preventDefault();
-			document.getElementById('loginStatus').textContent = 'Processing...';
-			var email = document.getElementById('loginEmail').value;
-			var password = document.getElementById('loginPassword').value;
-			var accounts = JSON.parse(localStorage.getItem('accounts') || '{}');
-			setTimeout(function() {
-				if(accounts[email] && accounts[email] === password) {
-					document.getElementById('loginStatus').textContent = 'Login successful! Redirecting...';
-					localStorage.setItem('user', JSON.stringify({email: email}));
-					setTimeout(function(){ window.location.href = 'dashboard.html'; }, 1200);
-				} else {
-					document.getElementById('loginStatus').textContent = 'Account not found or password incorrect.';
-				}
-			}, 1200);
-		});
-	</script>
+    <div class="chatbot-container">
+        <!-- Header -->
+        <div class="chatbot-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <div class="logo">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="title-group">
+                        <h1>XMX Chatbot</h1>
+                        <span class="status-badge">
+                            <span class="status-dot"></span>
+                            Online
+                        </span>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" id="refreshBtn" title="New Chat">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="header-btn" id="settingsBtn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="header-btn" id="logoutBtn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Area -->
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="welcome-section">
+                <div class="welcome-icon">
+                    <i class="fas fa-sparkles"></i>
+                </div>
+                <h2>Welcome to XMX Chatbot</h2>
+                <p>Your intelligent AI assistant powered by cutting-edge technology</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-lightning-bolt"></i>
+                        <span>Instant Responses</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Smart Learning</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Private</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Multi-Language</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="chatbot-input-section">
+            <div class="input-wrapper">
+                <input 
+                    type="text" 
+                    id="messageInput" 
+                    class="message-input" 
+                    placeholder="Type your message here..."
+                    autocomplete="off"
+                >
+                <div class="input-actions">
+                    <button class="action-btn" id="attachBtn" title="Attach File">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button class="action-btn" id="voiceBtn" title="Voice Note">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="send-btn" id="sendBtn" title="Send Message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="input-info">Powered by Google Generative AI | Free Tier</div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settingsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button class="close-btn" id="closeSettings">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="setting-group">
+                        <label>Theme</label>
+                        <select id="themeSelect">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="auto">Auto</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="soundToggle" checked>
+                            Enable Sound Notifications
+                        </label>
+                    </div>
+                    <div class="setting-group">
+                        <label>Clear Chat History</label>
+                        <button class="danger-btn" id="clearHistoryBtn">Clear All Messages</button>
+                    </div>
+                    <div class="setting-group">
+                        <label>
+                            <input type="checkbox" id="liveToggle">
+                            Live Mode (use server API /api/chat)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attach / Actions Modal -->
+        <div class="modal" id="attachModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Attach / Actions</h2>
+                    <button class="close-btn" id="closeAttachModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="attach-grid">
+                        <button class="attach-btn" data-action="create-image"><i class="fas fa-image"></i><span>Add Image</span></button>
+                        <button class="attach-btn" data-action="thinking"><i class="fas fa-brain"></i><span>Thinking</span></button>
+                        <button class="attach-btn" data-action="deep-research"><i class="fas fa-search"></i><span>Deep Research</span></button>
+                        <button class="attach-btn" data-action="study-learn"><i class="fas fa-book-open"></i><span>Study & Learn</span></button>
+                        <button class="attach-btn" data-action="web-search"><i class="fas fa-globe"></i><span>Web Search</span></button>
+                    </div>
+                    <input type="file" accept="image/*" id="imageFileInput" style="display:none">
+                </div>
+            </div>
+        </div>
+
+        <!-- Voice Note Modal -->
+        <div class="modal" id="voiceModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Voice Note</h2>
+                    <button class="close-btn" id="closeVoiceModal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="voice-recorder">
+                        <div class="voice-status" id="voiceStatus">Ready to record</div>
+                        <div class="voice-timer" id="voiceTimer">00:00</div>
+                        <div class="voice-controls">
+                            <button class="voice-btn" id="recordBtn">
+                                <i class="fas fa-circle"></i> Start Recording
+                            </button>
+                            <button class="voice-btn" id="stopBtn" style="display:none;">
+                                <i class="fas fa-stop"></i> Stop Recording
+                            </button>
+                        </div>
+                        <div class="voice-playback" id="voicePlayback" style="display:none;">
+                            <p>Recording saved</p>
+                            <audio id="audioPlayback" controls style="width:100%; margin: 10px 0;"></audio>
+                            <div class="voice-actions">
+                                <button class="modal-btn" id="sendVoiceBtn">
+                                    <i class="fas fa-paper-plane"></i> Send Voice Note
+                                </button>
+                                <button class="modal-btn secondary" id="rerecordBtn">
+                                    <i class="fas fa-redo"></i> Re-record
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
