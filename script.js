@@ -1,10 +1,8 @@
 // XMX Chatbot - Frontend JavaScript with Direct Google AI REST API
 // Project: projects/1001834401532
 // Project Number: 1001834401532
-// API Key embedded directly
-
-const API_KEY = 'AIzaSyCZB98FI2K5F1KQEQ1tD12MfCCrlhUMHvk'; // Your Google API Key
-const GOOGLE_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent';
+// NOTE: API key removed from frontend to prevent leakage.
+// The frontend now calls the server endpoint `/api/chat` which holds the API key securely on the server-side.
 
 class XMXChatbot {
     constructor() {
@@ -200,36 +198,20 @@ class XMXChatbot {
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
             
-            console.log('📤 Sending to Google API:', fullPrompt.substring(0, 100));
-            
-            const response = await fetch(`${GOOGLE_API_URL}?key=${API_KEY}`, {
+            // Send to server endpoint which will call Google Generative AI securely
+            console.log('📤 Sending to server /api/chat');
+            const response = await fetch('/api/chat', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    contents: [
-                        {
-                            parts: [
-                                {
-                                    text: fullPrompt
-                                }
-                            ]
-                        }
-                    ],
-                    generationConfig: {
-                        maxOutputTokens: 1024,
-                        temperature: 0.7,
-                    }
-                }),
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message, history: this.conversationHistory }),
                 signal: controller.signal
             });
-            
+
             clearTimeout(timeoutId);
 
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
-                throw new Error(errorData.error?.message || `API Error: ${response.status} ${response.statusText}`);
+                const err = await response.json().catch(() => ({}));
+                throw new Error(err.error || `Server Error: ${response.status} ${response.statusText}`);
             }
 
             const data = await response.json();
@@ -238,9 +220,12 @@ class XMXChatbot {
             this.removeTypingIndicator();
 
             // Extract response text
+            // Server should return `{ success: true, response: '<text>' }`
             let responseText = 'No response generated';
-            if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0]) {
-                responseText = data.candidates[0].content.parts[0].text;
+            if (data && data.success && data.response) {
+                responseText = data.response;
+            } else if (data && data.response) {
+                responseText = data.response;
             }
             
             // Add assistant response
@@ -456,20 +441,38 @@ class XMXChatbot {
 
 // Initialize chatbot when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if user is logged in
-    const user = localStorage.getItem('user');
-    if (!user) {
-        window.location.href = '../index.html';
-        return;
+    // First-visit welcome modal (shown once)
+    const welcomeShown = localStorage.getItem('xmx-welcome-shown');
+    const welcomeModal = document.getElementById('welcomeModal');
+    const closeWelcomeBtn = document.getElementById('closeWelcomeBtn');
+    const startBtn = document.getElementById('startBtn');
+
+    function closeWelcome() {
+        if (welcomeModal) welcomeModal.classList.remove('visible');
     }
 
-    // Add logout button handler
+    if (welcomeModal && !welcomeShown) {
+        welcomeModal.classList.add('visible');
+    }
+
+    if (closeWelcomeBtn) closeWelcomeBtn.addEventListener('click', () => {
+        localStorage.setItem('xmx-welcome-shown', 'true');
+        closeWelcome();
+    });
+
+    if (startBtn) startBtn.addEventListener('click', () => {
+        localStorage.setItem('xmx-welcome-shown', 'true');
+        closeWelcome();
+    });
+
+    // Add logout button handler (if used)
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', () => {
             if (confirm('Are you sure you want to logout?')) {
                 localStorage.removeItem('user');
-                window.location.href = '../index.html';
+                // Keep user on the same page after logout
+                location.reload();
             }
         });
     }

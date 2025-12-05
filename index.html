@@ -193,7 +193,23 @@
         </div>
 
         <!-- Toast Notification -->
-        <div class="toast" id="toast"></div>
+            <div class="toast" id="toast"></div>
+
+            <!-- First-visit Welcome Modal (shown once) -->
+            <div class="modal" id="welcomeModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2>Welcome to XMX Chatbot</h2>
+                        <button class="close-btn" id="closeWelcomeBtn"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Welcome! This site uses a secure server-side API. Tap "Start" to begin chatting.</p>
+                        <div style="margin-top:12px; text-align:right;">
+                            <button class="modal-btn" id="startBtn">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 
     <script src="script.js"></script>
